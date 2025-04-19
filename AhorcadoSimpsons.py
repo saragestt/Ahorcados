@@ -1,6 +1,5 @@
 import requests
 
-from tercerTrimestre.AhorcadoRickYMorty import nombre
 
 urlSimpsons = "https://thesimpsonsquoteapi.glitch.me/quotes"
 respuesta = requests.get(urlSimpsons)
@@ -11,10 +10,11 @@ objeto = contenido[0]
 
 frase = objeto["quote"]
 personaje = objeto["character"]
-print(personaje)
+#print(personaje)
 
 print(f"Ahorcado de los Simpsons!\n"
-      f"Adivina el personaje a partir de la frase: {frase}\n"
+      f"Adivina el personaje a partir de la frase:\n"
+      f"{frase}\n"
       f"(Tienes 6 intentos)")
 
 contador_intentos = 0
@@ -24,16 +24,16 @@ for i in range(len(personaje)):
     personaje_oculto.append("_")
 print(personaje_oculto)
 
-while contador_intentos < 6 or "_" not in personaje_oculto:
+while contador_intentos < 6 and "_" in personaje_oculto:
     print(f"Intentos: {contador_intentos}")
     letra = input("Introduce una letra: ")
 
     if letra in personaje:
-        for i in range(len(nombre)):
-            if nombre[i] == letra:
+        for i in range(len(personaje)):
+            if personaje[i] == letra:
                 personaje_oculto[i] = letra
                 print("Correcto, letra aceptada!")
-                print(personaje_oculto)
+                print(f"Nombre: {personaje_oculto}")
     else:
         contador_intentos += 1
         print(f"Incorrecto!")
