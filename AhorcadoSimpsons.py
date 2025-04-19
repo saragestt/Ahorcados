@@ -1,6 +1,6 @@
-import random
 import requests
 
+from tercerTrimestre.AhorcadoRickYMorty import nombre
 
 urlSimpsons = "https://thesimpsonsquoteapi.glitch.me/quotes"
 respuesta = requests.get(urlSimpsons)
@@ -24,14 +24,16 @@ for i in range(len(personaje)):
     personaje_oculto.append("_")
 print(personaje_oculto)
 
-while contador_intentos < 6:
+while contador_intentos < 6 or "_" not in personaje_oculto:
     print(f"Intentos: {contador_intentos}")
     letra = input("Introduce una letra: ")
 
     if letra in personaje:
-        personaje_oculto[i].join(letra) #aqui no se como ponerlo para que se quiten las rayas
-        print("Correcto, letra aceptada!")
-        print(personaje_oculto)
+        for i in range(len(nombre)):
+            if nombre[i] == letra:
+                personaje_oculto[i] = letra
+                print("Correcto, letra aceptada!")
+                print(personaje_oculto)
     else:
         contador_intentos += 1
         print(f"Incorrecto!")
