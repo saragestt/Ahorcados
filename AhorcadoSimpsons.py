@@ -1,5 +1,6 @@
 import requests
-
+from PIL import Image
+from io import BytesIO
 
 urlSimpsons = "https://thesimpsonsquoteapi.glitch.me/quotes"
 respuesta = requests.get(urlSimpsons)
@@ -10,6 +11,10 @@ objeto = contenido[0]
 
 frase = objeto["quote"]
 personaje = objeto["character"]
+foto=objeto["image"]
+respuesta_img=requests.get(foto)
+imagen=Image.open(BytesIO(respuesta_img.content))
+imagen.show()
 #print(personaje)
 
 print(f"Ahorcado de los Simpsons!\n"

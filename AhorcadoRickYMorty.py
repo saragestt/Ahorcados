@@ -1,13 +1,15 @@
 import random
 import image
 import requests
+from PIL import Image #para las fotos
+from io import BytesIO #Para las fotos
 
 
 apiRickyMorty = "https://rickandmortyapi.com/api/character/"
 personaje = random.randint(1, 826)
 contenidoWeb = requests.get(f"{apiRickyMorty}{personaje}")
 personaje = contenidoWeb.json()
-#print(personaje)
+print(personaje)
 
 objeto = personaje
 
@@ -15,7 +17,10 @@ nombre = objeto["name"]
 especie = objeto["species"]
 tipo = objeto["type"]
 genero = objeto["gender"]
-foto = objeto["image"]
+foto = objeto["image"] #--------------------------------------------------------
+respuesta_img=requests.get(foto) #para abrir la foto
+imagen=Image.open(BytesIO(respuesta_img.content))
+imagen.show()## ----------------------------------------------------------------------
 print(nombre)
 
 print(f"Ahorcado de Rick y Morty!\n"
