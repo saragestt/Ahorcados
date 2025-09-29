@@ -38,7 +38,7 @@ print(f"Nombre:{personaje_oculto}")
 
 while contador < 6 and "_" in personaje_oculto:
     print(f"Intentos: {contador}")
-    letra = (input(f"Introduce una letra: "))#no me lee las mayusculas como minusculas y si le pongo .lower me salta que esta mal
+    letra = input(f"Introduce una letra: ").lower()
 
     if letra in nombre:
         print("Letra correcta!")
